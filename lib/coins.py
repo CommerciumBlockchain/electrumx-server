@@ -379,7 +379,7 @@ class CommerciumMixin(object):
     WIF_BYTE = bytes.fromhex("140")
     GENESIS_HASH = ('00045ada91749106ec529f0544ad15e9'
                     'f0c2855fea37bf2952971de06e6251d2')
-    RPC_PORT = 9657
+    RPC_PORT = 13120
 
 class BitcoinMixin(object):
     SHORTNAME = "BTC"
@@ -501,17 +501,10 @@ class Commercium(EquihashMixin, CommerciumMixin, Coin):
     TX_COUNT_HEIGHT = 380909
     TX_PER_BLOCK = 50
     REORG_LIMIT = 1000
-    RPC_PORT = 9657
+    RPC_PORT = 13120
     GENESIS_HASH = ('00045ada91749106ec529f0544ad15e9'
                     'f0c2855fea37bf2952971de06e6251d2')
 
-
-    @classmethod
-    def header_hash(cls, header):
-        '''Given a header return hash'''
-        height, = struct.unpack('<I', header[68:72])
-
-        return double_sha256(header)
 
     @classmethod
     def electrum_header(cls, header, height):
